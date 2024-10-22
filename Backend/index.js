@@ -5,26 +5,34 @@ const mongoose = require("mongoose");
 const app = express();
 app.use(express.json());
 
-app.post("/login", function(req, res){
-
-});
-
-app.post("/signup", function(req, res){
+app.post("/user/signup", function(req, res){
     
 });
 
-app.post("/purchase_course", function(req, res){
+app.post("/user/signin", function(req, res){
+
+});
+
+
+app.get("/user/purchases", function(req, res){
     
 });
 
-app.get("/get_all_course", function(req, res){
+
+app.post("/course/purchase", function(req, res){
     
 });
 
-app.get("/get_purchased_course", function(req, res){
+
+app.get("/courses", function(req, res){
     
 });
 
-app.delete("/delete_course", function(req, res){
+
+
+app.delete("/user/delete_course", function(req, res){
     
 });
+
+
+app.listen(3000);
