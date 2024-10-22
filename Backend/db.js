@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 
-mongoose.connect("mongodb+srv://mohfazam:wPlvY91k1HgmrD13@cluster0.f8f0e.mongodb.net/EduMart")
 
 
 const schema = mongoose.Schema;
