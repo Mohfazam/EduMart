@@ -1,27 +1,26 @@
 const mongoose = require("mongoose");
 
-
 mongoose.connect("mongodb+srv://mohfazam:wPlvY91k1HgmrD13@cluster0.f8f0e.mongodb.net/EduMart")
 
 
 const schema = mongoose.Schema;
 const objectid = mongoose.ObjectId;
 
-const userschema = schema({
+const userschema = new schema({
     email: {type: String, unique: true},
     password: String,
     firstname: String,
     lastname: String
 });
 
-const adminschema = schema({
+const adminschema = new schema({
     email: {type: String, unique: true},
     password: String,
     firstname: String,
     lastname: String
 });
 
-const courseschema = schema({
+const courseschema = new schema({
     title : String,
     description: String,
     price: Number,
@@ -29,15 +28,15 @@ const courseschema = schema({
     creatorid: objectid
 });
 
-const purchaseschema = schema({
+const purchaseschema = new schema({
     userid: objectid,
     courseid: objectid
 });
 
 const usermodel = mongoose.model("user", userschema);
-const adminmodel = mongoose.model("user", adminschema);
-const coursemodel = mongoose.model("user", courseschema);
-const purchasemodel = mongoose.model("user", purchaseschema);
+const adminmodel = mongoose.model("admin", adminschema);
+const coursemodel = mongoose.model("course", courseschema);
+const purchasemodel = mongoose.model("purchase", purchaseschema);
 
 
 module.exports = {
