@@ -17,7 +17,11 @@ app.post("/purchase_course", function(req, res){
     
 });
 
-app.get("/get_course", function(req, res){
+app.get("/get_all_course", function(req, res){
+    
+});
+
+app.get("/get_purchased_course", function(req, res){
     
 });
 
