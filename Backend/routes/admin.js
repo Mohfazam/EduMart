@@ -17,7 +17,7 @@ adminrouter.post("/signin", function(req, res){
     });
 });
 
-adminrouter.post("/", function(req, res){
+adminrouter.post("/course", function(req, res){
     res.json({
         msg: "admin create course Endpoint"
     });
