@@ -10,7 +10,6 @@ userrouter.post("/signup", async function (req, res) {
   //TODO: adding zod validation
   //TODO: password hashing
   //TODO: adding try catch block for the usermodel
-  
 
   await usermodel.create({
     email: email,
@@ -24,29 +23,30 @@ userrouter.post("/signup", async function (req, res) {
   });
 });
 
-userrouter.post("/signin", function (req, res) {
-    const { email, password } = req.body;
+userrouter.post("/signin", async function (req, res) {
+  const { email, password } = req.body;
 
-    const user = usermodel.findOne({
-        email: email,
-        password: password
+  const user = await usermodel.findOne({
+    email: email,
+    password: password,
+  });
+
+  if (user) {
+    const token = jwt.sign(
+      {
+        id: user._id,
+      },
+      JWT_USER_PASSWORD
+    );
+    res.json({
+      msg: "signin Successful",
+      token: token,
     });
-
-    if(user){
-        const token = jwt.sign({
-            id: user._id
-        }, JWT_USER_PASSWORD)
-        res.json({
-            msg: "signin Successful",
-            token: token
-          });
-    }
-    else{
-        res.status(403).json({
-            msg: "Invalid Credentials",
-          });
-    }
-  
+  } else {
+    res.status(403).json({
+      msg: "Invalid Credentials",
+    });
+  }
 });
 
 userrouter.get("/purchases", function (req, res) {
