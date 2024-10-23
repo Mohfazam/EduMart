@@ -5,6 +5,10 @@ const userrouter = Router();
 
 userrouter.post("/signup", async function (req, res) {
   const { email, password, firstname, lastname } = req.body;
+  //TODO: adding zod validation
+  //TODO: password hashing
+  //TODO: adding try catch block for the usermodel
+  
 
   await usermodel.create({
     email: email,
@@ -19,6 +23,13 @@ userrouter.post("/signup", async function (req, res) {
 });
 
 userrouter.post("/signin", function (req, res) {
+    const { email, password } = req.body;
+
+    const user = usermodel.findOne({
+        email: email,
+        password: password
+    });
+
   res.json({
     msg: "signin endpoint",
   });
