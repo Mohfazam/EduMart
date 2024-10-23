@@ -1,5 +1,7 @@
 const { Router } = require("express");
 const { usermodel } = require("../db");
+const jwt = require("jsonwebtoken");
+const JWT_USER_PASSWORD = "EduMart, Hello World, USER";
 
 const userrouter = Router();
 
@@ -30,9 +32,21 @@ userrouter.post("/signin", function (req, res) {
         password: password
     });
 
-  res.json({
-    msg: "signin endpoint",
-  });
+    if(user){
+        const token = jwt.sign({
+            id: user._id
+        }, JWT_USER_PASSWORD)
+        res.json({
+            msg: "signin Successful",
+            token: token
+          });
+    }
+    else{
+        res.status(403).json({
+            msg: "Invalid Credentials",
+          });
+    }
+  
 });
 
 userrouter.get("/purchases", function (req, res) {
