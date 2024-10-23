@@ -47,11 +47,27 @@ adminrouter.post("/signin", async function (req, res) {
   }
 });
 
-adminrouter.post("/course", function (req, res) {
+adminrouter.post("/course", adminmiddleware, async function (req, res) {
+
+    const adminid = req.userid;
+
+    const { title, description, imageurl, price } = req.body;
+
+    const course = await coursemodel.create({
+        title: title, 
+        description:  description, 
+        imageurl: imageurl, 
+        price: price,
+        creatorid: adminid
+    });
+
   res.json({
-    msg: "admin create course Endpoint",
+    msg: "Course created",
+    courseid: course._id
   });
 });
+
+
 
 adminrouter.put("/course", function (req, res) {
   res.json({
