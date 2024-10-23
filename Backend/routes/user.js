@@ -3,6 +3,7 @@ const { usermodel } = require("../db");
 const jwt = require("jsonwebtoken");
 const { JWT_USER_PASSWORD } = require("../config");
 
+
 const userrouter = Router();
 
 userrouter.post("/signup", async function (req, res) {
