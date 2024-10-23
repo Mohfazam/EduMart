@@ -1,6 +1,8 @@
+require("dotenv").config();
 const express = require("express");
 const jwt = require("jsonwebtoken");
 const mongoose = require("mongoose");
+
 
 const { userrouter } = require("./routes/user");
 const { courserouter } = require("./routes/course");
@@ -16,7 +18,7 @@ app.use("/admin", adminrouter);
 
 
 async function main() {
-    await mongoose.connect("mongodb+srv://mohfazam:wPlvY91k1HgmrD13@cluster0.f8f0e.mongodb.net/EduMart")
+    await mongoose.connect(process.env.MONGO_URL);
     app.listen(3000);
 }
 
