@@ -20,6 +20,8 @@ courserouter.post("/purchase", usermiddleware, async function(req, res){
 });
 
 
+
+
 courserouter.get("/preview", async function(req, res){
 
     const courses = await coursemodel.find({});
